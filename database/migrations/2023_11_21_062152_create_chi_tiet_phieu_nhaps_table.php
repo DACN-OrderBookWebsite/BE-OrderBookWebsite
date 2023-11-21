@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tbl_NhomNguoiDung', function (Blueprint $table) {
-            $table->foreignId('idNhom')->nullable()->constrained('tbl_Nhom');
+        Schema::create('tbl_ChiTietPhieuNhap', function (Blueprint $table) {
+            $table->id();
+            $table->integer('SoLuong')->nullable();
+            $table->double('DonGiaNhap')->nullable();
         });
     }
 
@@ -21,9 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tbl_NhomNguoiDung', function (Blueprint $table) {
-            $table->dropForeign(['idNhom']);
-            $table->dropColumn('idNhom');
-        });
+        Schema::dropIfExists('tbl_ChiTietPhieuNhap');
     }
 };

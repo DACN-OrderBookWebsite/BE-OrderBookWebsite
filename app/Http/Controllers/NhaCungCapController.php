@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nhom;
+use App\Models\NhaCungCap;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
-class NhomController extends Controller
+class NhaCungCapController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Nhom::all();
+        return NhaCungCap::all();
     }
 
     /**
@@ -29,11 +30,13 @@ class NhomController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
-            'name' => 'required'
+            // 'id' => 'required',
+            'name' => 'required',
+            'SDT' => 'required|unique:NhaCungCap,SDT',
+            'DiaChi' => 'required',
+            'Email' => 'required|unique:NhaCungCap,Email|email'
         ]);
-
-        Nhom::create($request->all());
+        NhaCungCap::create($request);
     }
 
     /**
@@ -41,7 +44,7 @@ class NhomController extends Controller
      */
     public function show($id)
     {
-        return Nhom::findOrFail($id);
+        return NhaCungCap::findOrFail($id);
     }
 
     /**
@@ -59,13 +62,21 @@ class NhomController extends Controller
     {
         $request->validate([
             'id' => 'required',
-            'name' => 'required'
+            'name' => 'required',
+            'SDT' => [
+                'required',
+                Rule::unique('NhaCungCap', 'SDT')->ignore($request->id),
+            ],
+            'DiaChi' => 'required',
+            'Email' => [
+                'required',
+                'email',
+                Rule::unique('NhaCungCap', 'Email')->ignore($request->id),
+            ]
         ]);
-    
-        $Nhom = Nhom::findOrFail($id);
-        $Nhom->update($request->all());
 
-        return response()->json($Nhom);
+        $data = NhaCungCap::findOrFail($id);
+        $data->update($request);
     }
 
     /**
@@ -73,7 +84,7 @@ class NhomController extends Controller
      */
     public function destroy($id)
     {
-        $Nhom = Nhom::findOrFail($id);
-        $Nhom->delete();
+        $data = NhaCungCap::findOrFail($id);
+        $data->delete();
     }
 }

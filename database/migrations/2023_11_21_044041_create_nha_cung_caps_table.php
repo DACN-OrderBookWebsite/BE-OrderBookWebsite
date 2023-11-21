@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tbl_NhomNguoiDung', function (Blueprint $table) {
-            $table->foreignId('idNhom')->nullable()->constrained('tbl_Nhom');
+        Schema::create('tbl_NhaCungCap', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->string('SDT')->unique()->nullable();
+            $table->string('DiaChi')->nullable();
+            $table->string('Email')->unique()->nullable();
         });
     }
 
@@ -21,9 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tbl_NhomNguoiDung', function (Blueprint $table) {
-            $table->dropForeign(['idNhom']);
-            $table->dropColumn('idNhom');
-        });
+        Schema::dropIfExists('tbl_NhaCungCap');
     }
 };

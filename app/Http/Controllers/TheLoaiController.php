@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nhom;
+use App\Models\TheLoai;
 use Illuminate\Http\Request;
 
-class NhomController extends Controller
+class TheLoaiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Nhom::all();
+        return TheLoai::all();
     }
 
     /**
@@ -20,7 +20,7 @@ class NhomController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -33,7 +33,7 @@ class NhomController extends Controller
             'name' => 'required'
         ]);
 
-        Nhom::create($request->all());
+        TheLoai::create($request->all());
     }
 
     /**
@@ -41,7 +41,7 @@ class NhomController extends Controller
      */
     public function show($id)
     {
-        return Nhom::findOrFail($id);
+        return TheLoai::findOrFail($id);
     }
 
     /**
@@ -62,10 +62,10 @@ class NhomController extends Controller
             'name' => 'required'
         ]);
     
-        $Nhom = Nhom::findOrFail($id);
-        $Nhom->update($request->all());
+        $TheLoai = TheLoai::findOrFail($id);
+        $TheLoai->update($request->all());
 
-        return response()->json($Nhom);
+        return response()->json($TheLoai);
     }
 
     /**
@@ -73,7 +73,7 @@ class NhomController extends Controller
      */
     public function destroy($id)
     {
-        $Nhom = Nhom::findOrFail($id);
-        $Nhom->delete();
+        $TheLoai = TheLoai::findOrFail($id);
+        $TheLoai->delete();
     }
 }

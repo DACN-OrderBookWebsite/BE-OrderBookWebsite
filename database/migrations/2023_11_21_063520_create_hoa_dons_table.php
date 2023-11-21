@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tbl_NhomNguoiDung', function (Blueprint $table) {
-            $table->foreignId('idNhom')->nullable()->constrained('tbl_Nhom');
+        Schema::create('tbl_HoaDon', function (Blueprint $table) {
+            $table->id();
+            $table->dateTime('NgayXuat')->nullable();
+            $table->integer('TongSoLuong')->nullable();
+            $table->double('TongTien')->nullable();
+            $table->boolean('isGroup')->nullable();
         });
     }
 
@@ -21,9 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tbl_NhomNguoiDung', function (Blueprint $table) {
-            $table->dropForeign(['idNhom']);
-            $table->dropColumn('idNhom');
-        });
+        Schema::dropIfExists('tbl_HoaDon');
     }
 };

@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_Quyen', function (Blueprint $table) {
+        Schema::create('tbl_Sach', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->double('DonGia')->nullable();
+            $table->integer('SoLuongTon')->nullable();
+            $table->string('Anh')->nullable();
+            $table->boolean('Disabled')->nullable();
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_Quyen');
+        Schema::dropIfExists('tbl_Sach');
     }
 };

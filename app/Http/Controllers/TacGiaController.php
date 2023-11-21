@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nhom;
+use App\Models\TacGia;
 use Illuminate\Http\Request;
 
-class NhomController extends Controller
+class TacGiaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Nhom::all();
+        return TacGia::all();
     }
 
     /**
@@ -33,7 +33,7 @@ class NhomController extends Controller
             'name' => 'required'
         ]);
 
-        Nhom::create($request->all());
+        TacGia::create($request->all());
     }
 
     /**
@@ -41,7 +41,7 @@ class NhomController extends Controller
      */
     public function show($id)
     {
-        return Nhom::findOrFail($id);
+        return TacGia::findOrFail($id);
     }
 
     /**
@@ -62,10 +62,10 @@ class NhomController extends Controller
             'name' => 'required'
         ]);
     
-        $Nhom = Nhom::findOrFail($id);
-        $Nhom->update($request->all());
+        $data = TacGia::findOrFail($id);
+        $data->update($request->all());
 
-        return response()->json($Nhom);
+        return response()->json($data);
     }
 
     /**
@@ -73,7 +73,7 @@ class NhomController extends Controller
      */
     public function destroy($id)
     {
-        $Nhom = Nhom::findOrFail($id);
-        $Nhom->delete();
+        $data = TacGia::findOrFail($id);
+        $data->delete();
     }
 }
