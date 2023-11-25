@@ -45,8 +45,8 @@ class PhanQuyenController extends Controller
     {
         $request->validate([
             'id' => 'required',
-            'idQuyen' => 'required|exists:Quyen,id',
-            'idNhom'=>'required|exists:Nhom,id'
+            'idQuyen' => 'required|exists:tbl_Quyen,id',
+            'idNhom'=>'required|exists:tbl_Nhom,id'
         ]);
 
         PhanQuyen::create($request->all());
@@ -90,8 +90,8 @@ class PhanQuyenController extends Controller
     {
         $request->validate([
             'id' => 'required',
-            'idQuyen' => 'required|exists:Quyen,id',
-            'idNhom'=>'required|exists:Nhom,id'
+            'idQuyen' => 'required|exists:tbl_Quyen,id',
+            'idNhom'=>'required|exists:tbl_Nhom,id'
         ]);
     
         $PhanQuyen = PhanQuyen::findOrFail($id);

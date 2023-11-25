@@ -45,8 +45,8 @@ class NhomNguoiDungController extends Controller
     {
         $request->validate([
             'id' => 'required',
-            'idNguoiDung' => 'required|exists:NguoiDung,id',
-            'idNhom'=>'required|exists:Nhom,id'
+            'idNguoiDung' => 'required|exists:tbl_NguoiDung,id',
+            'idNhom'=>'required|exists:tbl_Nhom,id'
         ]);
 
         NhomNguoiDung::create($request->all());
@@ -90,8 +90,8 @@ class NhomNguoiDungController extends Controller
     {
         $request->validate([
             'id' => 'required',
-            'idNguoiDung' => 'required|exists:NguoiDung,id',
-            'idNhom'=>'required|exists:Nhom,id'
+            'idNguoiDung' => 'required|exists:tbl_NguoiDung,id',
+            'idNhom'=>'required|exists:tbl_Nhom,id'
         ]);
     
         $NhomNguoiDung = NhomNguoiDung::findOrFail($id);

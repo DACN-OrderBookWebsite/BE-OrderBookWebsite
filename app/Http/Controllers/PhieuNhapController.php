@@ -53,9 +53,9 @@ class PhieuNhapController extends Controller
             'NgayNhanHang' => 'required',
             'TongSoLuong' => 'required',
             'TongTien' => 'required',
-            'idTrangThai' => 'required|exists:TrangThaiDonHang,id',
-            'idNhanVien'=>'required|exists:NguoiDung,id',
-            'idNhaCungCap'=>'required|exists:NhaCungCap,id',
+            'idTrangThai' => 'required|exists:tbl_TrangThaiDonHang,id',
+            'idNhanVien'=>'required|exists:tbl_NguoiDung,id',
+            'idNhaCungCap'=>'required|exists:tbl_NhaCungCap,id',
         ]);
 
         PhieuNhap::create($request->all());
@@ -106,9 +106,9 @@ class PhieuNhapController extends Controller
             'NgayNhanHang' => 'required',
             'TongSoLuong' => 'required',
             'TongTien' => 'required',
-            'idTrangThai' => 'required|exists:TrangThaiDonHang,id',
-            'idNhanVien'=>'required|exists:NguoiDung,id',
-            'idNhaCungCap'=>'required|exists:NhaCungCap,id',
+            'idTrangThai' => 'required|exists:tbl_TrangThaiDonHang,id',
+            'idNhanVien'=>'required|exists:tbl_NguoiDung,id',
+            'idNhaCungCap'=>'required|exists:tbl_NhaCungCap,id',
         ]);
         $data = PhieuNhap::findOrFail($id);
         $data->update($request);
