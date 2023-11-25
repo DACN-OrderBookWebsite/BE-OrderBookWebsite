@@ -40,16 +40,16 @@ class NguoiDungController extends Controller
         $request->validate([
             // 'id' => 'required',
             'name' => 'required',
-            'TenDangNhap' => 'required|unique:NguoiDung,TenDangNhap',
+            'TenDangNhap' => 'required|unique:tbl_NguoiDung,TenDangNhap',
             'MatKhau' => 'required|confirmed',
-            'SDT' => 'required|unique:NguoiDung,SDT',
+            'SDT' => 'required|unique:tbl_NguoiDung,SDT',
             //'DiaChi' => 'required',
-            'Email' => 'required|unique:NguoiDung,Email|email',
+            'Email' => 'required|unique:tbl_NguoiDung,Email|email',
             //'NgayTao' => 'required',
             //'NgayThayDoi' => 'required',
             //'NgaySinh' => 'required',
             'Disabled' => 'required',
-            'idChucVu' => 'required|exists:ChucVu,id',
+            'idChucVu' => 'required|exists:tbl_ChucVu,id',
             'GioiTinh' => 'required',
             'Anh' => 'required'
         ]);
@@ -93,23 +93,23 @@ class NguoiDungController extends Controller
             'name' => 'required',
             'TenDangNhap' => [
                 'required',
-                Rule::unique('NguoiDung', 'TenDangNhap')->ignore($request->id),
+                Rule::unique('tbl_NguoiDung', 'TenDangNhap')->ignore($request->id),
             ],
             'MatKhau' => 'required',
             'SDT' => [
                 'required',
-                Rule::unique('NguoiDung', 'SDT')->ignore($request->id),
+                Rule::unique('tbl_NguoiDung', 'SDT')->ignore($request->id),
             ],
             //'DiaChi' => 'required',
             'Email' => [
                 'required',
                 'email',
-                Rule::unique('NguoiDung', 'Email')->ignore($request->id),
+                Rule::unique('tbl_NguoiDung', 'Email')->ignore($request->id),
             ],
             //'NgayTao' => 'required',
             //'NgayThayDoi' => 'required',
             'HoatDong' => 'required',
-            'idChucVu' => 'required|exists:ChucVu,id',
+            'idChucVu' => 'required|exists:tbl_ChucVu,id',
             'GioiTinh' => 'required',
             'Anh' => 'required'
         ]);

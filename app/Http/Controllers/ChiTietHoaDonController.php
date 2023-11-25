@@ -39,7 +39,7 @@ class ChiTietHoaDonController extends Controller
             'id' => 'required',
             'SoLuong' => 'required',
             'DonGiaNhap' => 'required',
-            'idSanPham' => 'required|exists:Sach,id',
+            'idSanPham' => 'required|exists:tbl_Sach,id',
         ]);
 
         ChiTietHoaDon::create($request->all());
@@ -78,7 +78,7 @@ class ChiTietHoaDonController extends Controller
             'id' => 'required',
             'SoLuong' => 'required',
             'DonGiaNhap' => 'required',
-            'idSanPham' => 'required|exists:Sach,id',
+            'idSanPham' => 'required|exists:tbl_Sach,id',
         ]);
         $data = ChiTietHoaDon::findOrFail($id);
         $data->update($request);

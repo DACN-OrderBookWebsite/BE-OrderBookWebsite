@@ -53,9 +53,9 @@ class HoaDonController extends Controller
             'TongSoLuong' => 'required',
             'TongTien' => 'required',
             'isGroup' => 'required',
-            'idTrangThai' => 'required|exists:TrangThaiDonHang,id',
-            'idNhanVien'=>'required|exists:NguoiDung,id',
-            'idKhachHang'=>'required|exists:NguoiDung,id',
+            'idTrangThai' => 'required|exists:tbl_TrangThaiDonHang,id',
+            'idNhanVien'=>'required|exists:tbl_NguoiDung,id',
+            'idKhachHang'=>'required|exists:tbl_NguoiDung,id',
         ]);
 
         HoaDon::create($request->all());
@@ -107,9 +107,9 @@ class HoaDonController extends Controller
             'TongSoLuong' => 'required',
             'TongTien' => 'required',
             'isGroup' => 'required',
-            'idTrangThai' => 'required|exists:TrangThaiDonHang,id',
-            'idNhanVien'=>'required|exists:NguoiDung,id',
-            'idKhachHang'=>'required|exists:NguoiDung,id',
+            'idTrangThai' => 'required|exists:tbl_TrangThaiDonHang,id',
+            'idNhanVien'=>'required|exists:tbl_NguoiDung,id',
+            'idKhachHang'=>'required|exists:tbl_NguoiDung,id',
         ]);
         $data = HoaDon::findOrFail($id);
         $data->update($request);

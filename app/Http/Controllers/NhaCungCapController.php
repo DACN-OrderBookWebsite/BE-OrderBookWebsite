@@ -32,9 +32,9 @@ class NhaCungCapController extends Controller
         $request->validate([
             // 'id' => 'required',
             'name' => 'required',
-            'SDT' => 'required|unique:NhaCungCap,SDT',
+            'SDT' => 'required|unique:tbl_NhaCungCap,SDT',
             'DiaChi' => 'required',
-            'Email' => 'required|unique:NhaCungCap,Email|email'
+            'Email' => 'required|unique:tbl_NhaCungCap,Email|email'
         ]);
         NhaCungCap::create($request);
     }
@@ -65,13 +65,13 @@ class NhaCungCapController extends Controller
             'name' => 'required',
             'SDT' => [
                 'required',
-                Rule::unique('NhaCungCap', 'SDT')->ignore($request->id),
+                Rule::unique('tbl_NhaCungCap', 'SDT')->ignore($request->id),
             ],
             'DiaChi' => 'required',
             'Email' => [
                 'required',
                 'email',
-                Rule::unique('NhaCungCap', 'Email')->ignore($request->id),
+                Rule::unique('tbl_NhaCungCap', 'Email')->ignore($request->id),
             ]
         ]);
 
