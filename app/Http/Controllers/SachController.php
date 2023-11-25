@@ -49,7 +49,7 @@ class SachController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'name' => 'required',
             'idTheLoai' => 'required|exists:tbl_TheLoai,id',
             'idNhaXuatBan'=>'required|exists:tbl_NhaXuatBan,id',
@@ -104,7 +104,7 @@ class SachController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'name' => 'required',
             'idTheLoai' => 'required|exists:tbl_TheLoai,id',
             'idNhaXuatBan'=>'required|exists:tbl_NhaXuatBan,id',

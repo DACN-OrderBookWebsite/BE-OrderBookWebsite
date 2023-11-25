@@ -47,7 +47,7 @@ class HoaDonController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'NgayXuat' => 'required',
             //'NgayNhanHang' => 'required',
             'TongSoLuong' => 'required',
@@ -101,7 +101,7 @@ class HoaDonController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'NgayXuat' => 'required',
             //'NgayNhanHang' => 'required',
             'TongSoLuong' => 'required',
