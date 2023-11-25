@@ -44,7 +44,7 @@ class NhomNguoiDungController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'idNguoiDung' => 'required|exists:tbl_NguoiDung,id',
             'idNhom'=>'required|exists:tbl_Nhom,id'
         ]);
@@ -89,7 +89,7 @@ class NhomNguoiDungController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'idNguoiDung' => 'required|exists:tbl_NguoiDung,id',
             'idNhom'=>'required|exists:tbl_Nhom,id'
         ]);

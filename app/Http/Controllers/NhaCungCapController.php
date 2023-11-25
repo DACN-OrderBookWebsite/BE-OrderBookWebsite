@@ -61,7 +61,7 @@ class NhaCungCapController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'name' => 'required',
             'SDT' => [
                 'required',

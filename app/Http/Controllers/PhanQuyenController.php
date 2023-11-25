@@ -44,7 +44,7 @@ class PhanQuyenController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'idQuyen' => 'required|exists:tbl_Quyen,id',
             'idNhom'=>'required|exists:tbl_Nhom,id'
         ]);
@@ -89,7 +89,7 @@ class PhanQuyenController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'idQuyen' => 'required|exists:tbl_Quyen,id',
             'idNhom'=>'required|exists:tbl_Nhom,id'
         ]);

@@ -41,7 +41,7 @@ class NguoiDungController extends Controller
             // 'id' => 'required',
             'name' => 'required',
             'TenDangNhap' => 'required|unique:tbl_NguoiDung,TenDangNhap',
-            'MatKhau' => 'required|confirmed',
+            'MatKhau' => 'required|confirmed|min:6',
             'SDT' => 'required|unique:tbl_NguoiDung,SDT',
             //'DiaChi' => 'required',
             'Email' => 'required|unique:tbl_NguoiDung,Email|email',
@@ -89,13 +89,13 @@ class NguoiDungController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'name' => 'required',
             'TenDangNhap' => [
                 'required',
                 Rule::unique('tbl_NguoiDung', 'TenDangNhap')->ignore($request->id),
             ],
-            'MatKhau' => 'required',
+            'MatKhau' => 'required|min:6',
             'SDT' => [
                 'required',
                 Rule::unique('tbl_NguoiDung', 'SDT')->ignore($request->id),
@@ -108,7 +108,7 @@ class NguoiDungController extends Controller
             ],
             //'NgayTao' => 'required',
             //'NgayThayDoi' => 'required',
-            'HoatDong' => 'required',
+            'Disabled' => 'required',
             'idChucVu' => 'required|exists:tbl_ChucVu,id',
             'GioiTinh' => 'required',
             'Anh' => 'required'
@@ -127,5 +127,17 @@ class NguoiDungController extends Controller
     {
         $NguoiDung = NguoiDung::findOrFail($id);
         $NguoiDung->delete();
+    }
+    public function doiMatKhau(Request $request, $id)
+    {
+        $request->validate([
+            'MatKhau' => 'required|confirmed|min:6',
+        ]);
+    
+        $data = NguoiDung::findOrFail($id);
+
+        $data->update([
+            'MatKhau' => bcrypt($request->MatKhau),
+        ]);
     }
 }

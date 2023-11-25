@@ -36,7 +36,7 @@ class ChiTietPhieuNhapController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'SoLuong' => 'required',
             'DonGiaNhap' => 'required',
             'idSanPham' => 'required|exists:tbl_Sach,id',
@@ -75,7 +75,7 @@ class ChiTietPhieuNhapController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id' => 'required',
+            // 'id' => 'required',
             'SoLuong' => 'required',
             'DonGiaNhap' => 'required',
             'idSanPham' => 'required|exists:tbl_Sach,id',
