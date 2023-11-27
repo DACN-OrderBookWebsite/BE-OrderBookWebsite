@@ -15,6 +15,7 @@ use App\Http\Controllers\QuyenController;
 use App\Http\Controllers\SachController;
 use App\Http\Controllers\TacGiaController;
 use App\Http\Controllers\TheLoaiController;
+use App\Http\Controllers\ImageUploadController;
 use App\Models\TrangThaiDonHang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -65,3 +66,5 @@ Route::apiResource('ChiTietPhieuNhap', ChiTietPhieuNhapController::class);
 Route::apiResource('HoaDon', HoaDonController::class);
 
 Route::apiResource('ChiTietHoaDon', ChiTietHoaDonController::class);
+
+Route::post('/upload-avatar', [ImageUploadController::class, 'uploadAvatar']);
