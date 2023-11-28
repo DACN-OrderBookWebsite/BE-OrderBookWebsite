@@ -22,15 +22,9 @@ class PhanQuyenController extends Controller
      */
     public function create()
     {
-        $Quyen = Quyen::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
+        $Quyen = Quyen::all();
 
-        $Nhom = Nhom::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
+        $Nhom = Nhom::all();
 
         return response()->json([
             "Quyen" => $Quyen,
@@ -65,21 +59,13 @@ class PhanQuyenController extends Controller
      */
     public function edit($id)
     {
-        $PhanQuyen = PhanQuyen::findOrFail($id);
-        $Quyen = Quyen::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
+        $Quyen = Quyen::all();
 
-        $Nhom = Nhom::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
+        $Nhom = Nhom::all();
 
         return response()->json([
             "Quyen" => $Quyen,
             "Nhom" => $Nhom,
-            "PhanQuyen" => $PhanQuyen
         ]);
     }
 
@@ -107,5 +93,25 @@ class PhanQuyenController extends Controller
     {
         $PhanQuyen = PhanQuyen::findOrFail($id);
         $PhanQuyen->delete();
+    }
+    public function getDataByidNhom($idNhom)
+    {
+        $phanQuyen = PhanQuyen::where('idNhom', $idNhom)->get();
+
+        return response()->json($phanQuyen);
+    }
+    public function checkQuyen($idNguoiDung, $idQuyen)
+    {
+        // Kiểm tra xem người dùng có idQuyen tương ứng trong bảng PhanQuyen hay không
+        $result = PhanQuyen::where('idNhom', function ($query) use ($idNguoiDung) {
+                $query->select('idNhom')
+                    ->from('tbl_NhomNguoiDung')
+                    ->where('idNguoiDung', $idNguoiDung);
+            })
+            ->where('idQuyen', $idQuyen)
+            ->exists();
+
+        // Trả về kết quả true hoặc false
+        return response()->json(['result' => $result]);
     }
 }

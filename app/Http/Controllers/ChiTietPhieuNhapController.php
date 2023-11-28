@@ -21,10 +21,7 @@ class ChiTietPhieuNhapController extends Controller
      */
     public function create()
     {
-        $SanPham = Sach::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
+        $SanPham = Sach::all();
         return response()->json([
             "SanPham" => $SanPham,
         ]);
@@ -58,14 +55,9 @@ class ChiTietPhieuNhapController extends Controller
      */
     public function edit($id)
     {
-        $data = ChiTietPhieuNhap::findOrFail($id);
-        $SanPham = Sach::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
+        $SanPham = Sach::all();
         return response()->json([
             "SanPham" => $SanPham,
-            "ChiTietPhieuNhap" => $data
         ]);
     }
 
