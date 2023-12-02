@@ -89,7 +89,7 @@ class NguoiDungController extends Controller
                 'required',
                 Rule::unique('tbl_NguoiDung', 'TenDangNhap')->ignore($request->id),
             ],
-            'MatKhau' => 'required|min:6',
+            // 'MatKhau' => 'required|min:6',
             'SDT' => [
                 'required',
                 Rule::unique('tbl_NguoiDung', 'SDT')->ignore($request->id),

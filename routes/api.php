@@ -101,7 +101,7 @@ Route::apiResource('ChiTietHoaDon', ChiTietHoaDonController::class);
 
 Route::post('/upload-avatar', [ImageUploadController::class, 'uploadAvatar']);
 
-Route::put('/NguoiDung/changePassword', [NguoiDungController::class, 'changePassword']);
+Route::put('/NguoiDung/{id}/changePassword', [NguoiDungController::class, 'changePassword']);
 
 Route::get('NguoiDung/{username}/{password}/checkLogin', [NguoiDungController::class, 'checkLogin']);
 
