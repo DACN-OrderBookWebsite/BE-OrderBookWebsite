@@ -23,13 +23,12 @@ class NguoiDungController extends Controller
      */
     public function create()
     {
-        $ChucVu = ChucVu::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
+        $ChucVu = ChucVu::all();
+        
         return response()->json([
-            "ChucVu" => $ChucVu
+            'ChucVu' => $ChucVu->all(),
         ]);
+        
     }
 
     /**
@@ -72,14 +71,9 @@ class NguoiDungController extends Controller
      */
     public function edit($id)
     {
-        $ChucVu = ChucVu::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
-        $NguoiDung = NguoiDung::findOrFail($id)->select()->get();
+        $ChucVu = ChucVu::all();
         return response()->json([
             "ChucVu" => $ChucVu,
-            "NguoiDung" => $NguoiDung
         ]);
     }
 
@@ -128,7 +122,7 @@ class NguoiDungController extends Controller
         $NguoiDung = NguoiDung::findOrFail($id);
         $NguoiDung->delete();
     }
-    public function doiMatKhau(Request $request, $id)
+    public function changePassword(Request $request, $id)
     {
         $request->validate([
             'MatKhau' => 'required|confirmed|min:6',
@@ -139,5 +133,29 @@ class NguoiDungController extends Controller
         $data->update([
             'MatKhau' => bcrypt($request->MatKhau),
         ]);
+    }
+    public function checkLogin($username, $password)
+    {
+        $user = NguoiDung::where('TenDangNhap', $username)->first();
+
+        if ($user && Hash::check($password, $user->MatKhau)) {
+            // Đăng nhập thành công
+            return response()->json(['success' => true]);
+        } else {
+            // Sai tên đăng nhập hoặc mật khẩu
+            return response()->json(['success' => false]);
+        }
+    }
+    public function getDataIsNotAddByGroup($idNhom)
+    {
+        // Sử dụng model NguoiDung và NhomNguoiDung để lấy các quyền chưa được thêm vào bảng NhomNguoiDung
+        $missingPermissions = NguoiDung::whereNotIn('id', function ($query) use ($idNhom) {
+            $query->select('idNguoiDung')
+                ->from('tbl_NhomNguoiDung')
+                ->where('idNhom', $idNhom);
+        })->get();
+
+        // Trả về kết quả dưới dạng JSON
+        return response()->json($missingPermissions);
     }
 }

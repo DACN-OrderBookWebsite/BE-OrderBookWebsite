@@ -23,18 +23,9 @@ class SachController extends Controller
      */
     public function create()
     {
-        $TheLoai = TheLoai::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
-        $NhaXuatBan = NhaXuatBan::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
-        $TacGia = TacGia::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
+        $TheLoai = TheLoai::all();
+        $NhaXuatBan = NhaXuatBan::all();
+        $TacGia = TacGia::all();
 
         return response()->json([
             "TheLoai" => $TheLoai,
@@ -76,25 +67,14 @@ class SachController extends Controller
      */
     public function edit($id)
     {
-        $data = Sach::findOrFail($id);
-        $TheLoai = TheLoai::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
-        $NhaXuatBan = NhaXuatBan::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
-        $TacGia = TacGia::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
+        $TheLoai = TheLoai::all();
+        $NhaXuatBan = NhaXuatBan::all();
+        $TacGia = TacGia::all();
 
         return response()->json([
             "TheLoai" => $TheLoai,
             "NhaXuatBan" => $NhaXuatBan,
             "TacGia" => $TacGia,
-            "Sach" => $data
         ]);
     }
 

@@ -22,15 +22,9 @@ class NhomNguoiDungController extends Controller
      */
     public function create()
     {
-        $NguoiDung = NguoiDung::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
+        $NguoiDung = NguoiDung::all();
 
-        $Nhom = Nhom::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
+        $Nhom = Nhom::all();
 
         return response()->json([
             "NguoiDung" => $NguoiDung,
@@ -65,21 +59,13 @@ class NhomNguoiDungController extends Controller
      */
     public function edit($id)
     {
-        $NhomNguoiDung = NhomNguoiDung::findOrFail($id);
-        $NguoiDung = NguoiDung::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
+        $NguoiDung = NguoiDung::all();
 
-        $Nhom = Nhom::all()->select(
-            "id as value",
-            "name as label"
-        )->get();
+        $Nhom = Nhom::all();
 
         return response()->json([
             "NguoiDung" => $NguoiDung,
             "Nhom" => $Nhom,
-            "NhomNguoiDung" => $NhomNguoiDung
         ]);
     }
 
@@ -107,5 +93,11 @@ class NhomNguoiDungController extends Controller
     {
         $NhomNguoiDung = NhomNguoiDung::findOrFail($id);
         $NhomNguoiDung->delete();
+    }
+    public function getDataByidNhom($idNhom)
+    {
+        $nhomNguoiDung = NhomNguoiDung::where('idNhom', $idNhom)->get();
+
+        return response()->json($nhomNguoiDung);
     }
 }

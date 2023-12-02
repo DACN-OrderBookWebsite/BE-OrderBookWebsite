@@ -23,18 +23,9 @@ class PhieuNhapController extends Controller
      */
     public function create()
     {
-        $TrangThai = TrangThaiDonHang::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
-        $NhanVien = NguoiDung::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
-        $NhaCungCap = NhaCungCap::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
+        $TrangThai = TrangThaiDonHang::all();
+        $NhanVien = NguoiDung::all();
+        $NhaCungCap = NhaCungCap::all();
         return response()->json([
             "TrangThai" => $TrangThai,
             "NhanVien" => $NhanVien,
@@ -74,24 +65,15 @@ class PhieuNhapController extends Controller
      */
     public function edit($id)
     {
-        $data = PhieuNhap::findOrFail($id);
-        $TrangThai = TrangThaiDonHang::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
-        $NhanVien = NguoiDung::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
-        $NhaCungCap = NhaCungCap::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
+        
+        $TrangThai = TrangThaiDonHang::all();
+        $NhanVien = NguoiDung::all();
+        $NhaCungCap = NhaCungCap::all();
         return response()->json([
             "TrangThai" => $TrangThai,
             "NhanVien" => $NhanVien,
             "NhaCungCap" => $NhaCungCap,
-            "PhieuNhap" => $data
+
         ]);
     }
 

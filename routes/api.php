@@ -37,13 +37,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('ChucVu', ChucVuController::class);
 
+Route::get('NguoiDung/create', [NguoiDungController::class, 'create']);
+
+Route::get('NguoiDung/{id}/edit', [NguoiDungController::class, 'edit']);
+
 Route::apiResource('NguoiDung', NguoiDungController::class);
 
 Route::apiResource('Nhom', NhomController::class);
 
+Route::get('NhomNguoiDung/create', [NhomNguoiDungController::class, 'create']);
+
+Route::get('NhomNguoiDung/{id}/edit', [NhomNguoiDungController::class, 'edit']);
+
 Route::apiResource('NhomNguoiDung', NhomNguoiDungController::class);
 
 Route::apiResource('Quyen', QuyenController::class);
+
+Route::get('PhanQuyen/create', [PhanQuyenController::class, 'create']);
+
+Route::get('PhanQuyen/{id}/edit', [PhanQuyenController::class, 'edit']);
 
 Route::apiResource('PhanQuyen', PhanQuyenController::class);
 
@@ -53,18 +65,52 @@ Route::apiResource('NhaXuatBan', NhaXuatBanController::class);
 
 Route::apiResource('TacGia', TacGiaController::class);
 
+Route::get('Sach/create', [SachController::class, 'create']);
+
+Route::get('Sach/{id}/edit', [SachController::class, 'edit']);
+
 Route::apiResource('Sach', SachController::class);
 
 Route::apiResource('TrangThaiDonHang', TrangThaiDonHang::class);
 
 Route::apiResource('NhaCungCap', NhaCungCapController::class);
 
+Route::get('PhieuNhap/create', [PhieuNhapController::class, 'create']);
+
+Route::get('PhieuNhap/{id}/edit', [PhieuNhapController::class, 'edit']);
+
 Route::apiResource('PhieuNhap', PhieuNhapController::class);
+
+Route::get('ChiTietPhieuNhap/create', [ChiTietPhieuNhapController::class, 'create']);
+
+Route::get('ChiTietPhieuNhap/{id}/edit', [ChiTietPhieuNhapController::class, 'edit']);
 
 Route::apiResource('ChiTietPhieuNhap', ChiTietPhieuNhapController::class);
 
+Route::get('HoaDon/create', [HoaDonController::class, 'create']);
+
+Route::get('HoaDon/{id}/edit', [HoaDonController::class, 'edit']);
+
 Route::apiResource('HoaDon', HoaDonController::class);
+
+Route::get('ChiTietHoaDon/create', [ChiTietHoaDonController::class, 'create']);
+
+Route::get('ChiTietHoaDon/{id}/edit', [ChiTietHoaDonController::class, 'edit']);
 
 Route::apiResource('ChiTietHoaDon', ChiTietHoaDonController::class);
 
 Route::post('/upload-avatar', [ImageUploadController::class, 'uploadAvatar']);
+
+Route::put('/NguoiDung/changePassword', [NguoiDungController::class, 'changePassword']);
+
+Route::get('NguoiDung/{username}/{password}/checkLogin', [NguoiDungController::class, 'checkLogin']);
+
+Route::get('Quyen/{idNhom}/getDataIsNotAddByGroup', [QuyenController::class, 'getDataIsNotAddByGroup']);
+
+Route::get('PhanQuyen/{idNhom}/getDataByidNhom', [PhanQuyenController::class, 'getDataByidNhom']);
+
+Route::get('NguoiDung/{idNhom}/getDataIsNotAddByGroup', [NguoiDungController::class, 'getDataIsNotAddByGroup']);
+
+Route::get('NhomNguoiDung/{idNhom}/getDataByidNhom', [NhomNguoiDungController::class, 'getDataByidNhom']);
+
+Route::get('PhanQuyen/{idNguoiDung}/{idQuyen}/checkQuyen', [PhanQuyenController::class, 'checkQuyen']);

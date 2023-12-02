@@ -76,4 +76,16 @@ class QuyenController extends Controller
         $Quyen = Quyen::findOrFail($id);
         $Quyen->delete();
     }
+    public function getDataIsNotAddByGroup($idNhom)
+    {
+        // Lấy danh sách quyền chưa được thêm vào bảng PhanQuyen
+        $missingPermissions = Quyen::whereNotIn('id', function ($query) use ($idNhom) {
+            $query->select('idQuyen')
+                ->from('tbl_PhanQuyen')
+                ->where('idNhom', $idNhom);
+        })->get();
+
+        // Trả về kết quả dưới dạng JSON
+        return response()->json($missingPermissions);
+    }
 }

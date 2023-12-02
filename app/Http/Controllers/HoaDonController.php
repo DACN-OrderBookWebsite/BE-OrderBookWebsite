@@ -22,18 +22,9 @@ class HoaDonController extends Controller
      */
     public function create()
     {
-        $TrangThai = TrangThaiDonHang::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
-        $NhanVien = NguoiDung::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
-        $KhachHang = NguoiDung::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
+        $TrangThai = TrangThaiDonHang::all();
+        $NhanVien = NguoiDung::all();
+        $KhachHang = NguoiDung::all();
         return response()->json([
             "TrangThai" => $TrangThai,
             "NhanVien" => $NhanVien,
@@ -74,24 +65,13 @@ class HoaDonController extends Controller
      */
     public function edit($id)
     {
-        $data = HoaDon::findOrFail($id);
-        $TrangThai = TrangThaiDonHang::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
-        $NhanVien = NguoiDung::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
-        $KhachHang = NguoiDung::all()->select(
-            'id as value',
-            'name as label'
-        )->get();
+        $TrangThai = TrangThaiDonHang::all();
+        $NhanVien = NguoiDung::all();
+        $KhachHang = NguoiDung::all();
         return response()->json([
             "TrangThai" => $TrangThai,
             "NhanVien" => $NhanVien,
             "KhachHang" => $KhachHang,
-            "HoaDon" => $data
         ]);
     }
 
