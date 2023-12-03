@@ -39,7 +39,7 @@ class NguoiDungController extends Controller
         $request->validate([
             // 'id' => 'required',
             'name' => 'required',
-            'TenDangNhap' => 'required|unique:tbl_NguoiDung,TenDangNhap',
+            'TenDangNhap' => 'required|unique:tbl_NguoiDung,TenDangNhap|min:6',
             'MatKhau' => 'required|confirmed|min:6',
             'SDT' => 'required|unique:tbl_NguoiDung,SDT',
             //'DiaChi' => 'required',
@@ -86,7 +86,7 @@ class NguoiDungController extends Controller
             // 'id' => 'required',
             'name' => 'required',
             'TenDangNhap' => [
-                'required',
+                'required|min:6',
                 Rule::unique('tbl_NguoiDung', 'TenDangNhap')->ignore($request->id),
             ],
             // 'MatKhau' => 'required|min:6',
