@@ -86,7 +86,8 @@ class NguoiDungController extends Controller
             // 'id' => 'required',
             'name' => 'required',
             'TenDangNhap' => [
-                'required|min:6',
+                'required',
+                'min:6',
                 Rule::unique('tbl_NguoiDung', 'TenDangNhap')->ignore($request->id),
             ],
             // 'MatKhau' => 'required|min:6',
