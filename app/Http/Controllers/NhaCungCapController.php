@@ -36,7 +36,7 @@ class NhaCungCapController extends Controller
             'DiaChi' => 'required',
             'Email' => 'required|unique:tbl_NhaCungCap,Email|email'
         ]);
-        NhaCungCap::create($request);
+        NhaCungCap::create($request->all());
     }
 
     /**
@@ -76,7 +76,7 @@ class NhaCungCapController extends Controller
         ]);
 
         $data = NhaCungCap::findOrFail($id);
-        $data->update($request);
+        $data->update($request->all());
     }
 
     /**

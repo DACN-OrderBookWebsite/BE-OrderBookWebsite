@@ -22,7 +22,7 @@ class Sach extends Model
         'idTacGia',
         'DonGia',
         'SoLuongTon',
-        'Sach',
+        'Anh',
         'Disabled'
     ];
 }

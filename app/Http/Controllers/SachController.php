@@ -47,10 +47,11 @@ class SachController extends Controller
             'idTacGia'=>'required|exists:tbl_TacGia,id',
             'DonGia' => 'required',
             'SoLuongTon' => 'required',
-            'Sach' => 'required',
+            'Anh' => 'required',
             'Disabled' => 'required'
         ]);
-
+        $Sach = $request->except(["Disabled"]);
+        $Sach["Disabled"] = $request["Disabled"] ? 1 : 0;
         Sach::create($request->all());
     }
 
@@ -91,10 +92,11 @@ class SachController extends Controller
             'idTacGia'=>'required|exists:tbl_TacGia,id',
             'DonGia' => 'required',
             'SoLuongTon' => 'required',
-            'Sach' => 'required',
+            'Anh' => 'required',
             'Disabled' => 'required'
         ]);
         $data = Sach::findOrFail($id);
+        $Sach = $request->except(["Disabled"]);
         $Sach["Disabled"] = $request["Disabled"] ? 1 : 0;
         $data->update($Sach);
     }
