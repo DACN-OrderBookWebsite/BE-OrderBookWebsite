@@ -18,9 +18,11 @@ class NhomNguoiDungFactory extends Factory
      */
     public function definition(): array
     {
+        $NguoiDung = NguoiDung::inRandomOrder()->first();
+        $Nhom = Nhom::inRandomOrder()->first();
         return [
-            'idNguoiDung' => NguoiDung::factory(),
-            'idNhom' => Nhom::factory()
+            'idNguoiDung' => $NguoiDung->id,
+            'idNhom' => $Nhom->id
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\HoaDon;
 use App\Models\Sach;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,8 +18,11 @@ class ChiTietHoaDonFactory extends Factory
      */
     public function definition(): array
     {
+        $Sach = Sach::inRandomOrder()->first();
+        $HoaDon = HoaDon::inRandomOrder()->first();
         return [
-            'idSanPham' => Sach::factory(),
+            'idSanPham' => $Sach->id,
+            'idHoaDon' => $HoaDon->id,
             'SoLuong' => $this->faker->randomNumber(2),
             'DonGia' => $this->faker->randomFloat(2,0,1000000000)
         ];

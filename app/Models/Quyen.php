@@ -10,7 +10,7 @@ class Quyen extends Model
     use HasFactory;
     protected $table = 'tbl_Quyen';
     protected $primaryKey = 'id';
-    public $incrementing = true;
+    public $incrementing = false;
 
     public $timestamps = false;
 

@@ -104,4 +104,8 @@ class PhieuNhapController extends Controller
         $data = PhieuNhap::findOrFail($id);
         $data->delete();
     }
+    public function getDataByidTrangThai($idTrangThai)
+    {
+        return PhieuNhap::where('idTrangThai', $idTrangThai)->orderByDesc('NgayNhap')->get();
+    }
 }

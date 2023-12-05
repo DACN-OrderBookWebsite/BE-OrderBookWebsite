@@ -13,6 +13,6 @@ class QuyenSeeder extends Seeder
      */
     public function run(): void
     {
-        Quyen::factory(10)->create();
+        Quyen::factory()->fixedData()->create();
     }
 }

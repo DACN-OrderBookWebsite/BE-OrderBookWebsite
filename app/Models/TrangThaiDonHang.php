@@ -10,7 +10,7 @@ class TrangThaiDonHang extends Model
     use HasFactory;
     protected $table = 'tbl_TrangThaiDonHang';
     protected $primaryKey = 'id';
-    public $incrementing = true;
+    public $incrementing = false;
 
     public $timestamps = false;
 
