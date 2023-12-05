@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\PhieuNhap;
 use App\Models\Sach;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,8 +18,11 @@ class ChiTietPhieuNhapFactory extends Factory
      */
     public function definition(): array
     {
+        $Sach = Sach::inRandomOrder()->first();
+        $PhieuNhap = PhieuNhap::inRandomOrder()->first();
         return [
-            'idSanPham' => Sach::factory(),
+            'idSanPham' => $Sach->id,
+            'idPhieuNhap' => $PhieuNhap->id,
             'SoLuong' => $this->faker->randomNumber(2),
             'DonGiaNhap' => $this->faker->randomFloat(2,0,1000000000)
         ];

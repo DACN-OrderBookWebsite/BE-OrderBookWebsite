@@ -18,9 +18,11 @@ class PhanQuyenFactory extends Factory
      */
     public function definition(): array
     {
+        $Nhom = Nhom::inRandomOrder()->first();
+        $Quyen = Quyen::inRandomOrder()->first();
         return [
-            'idNhom' => Nhom::factory(),
-            'idQuyen' => Quyen::factory()
+            'idNhom' => $Nhom->id,
+            'idQuyen' => $Quyen->id,
         ];
     }
 }

@@ -17,6 +17,7 @@ class NguoiDungFactory extends Factory
      */
     public function definition(): array
     {
+        $ChucVu = ChucVu::inRandomOrder()->first();
         return [
             'name' => $this->faker->name,
             'TenDangNhap' => $this->faker->unique()->userName,
@@ -26,7 +27,7 @@ class NguoiDungFactory extends Factory
             'Email' => $this->faker->unique()->safeEmail,
             'NgayTao' => now(),
             'NgayThayDoi' => now(),
-            'idChucVu' => ChucVu::factory(),
+            'idChucVu' => $ChucVu->id,
             'GioiTinh' => $this->faker->boolean,
             'Anh' => $this->faker->imageUrl(),
             'Disabled' => $this->faker->boolean,

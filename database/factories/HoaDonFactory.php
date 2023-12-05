@@ -18,15 +18,18 @@ class HoaDonFactory extends Factory
      */
     public function definition(): array
     {
+        $TrangThaiDonHang = TrangThaiDonHang::inRandomOrder()->first();
+        $NguoiDung = NguoiDung::inRandomOrder()->first();
+        $KhachHang = NguoiDung::inRandomOrder()->first();
         return [
             'NgayXuat' => $this->faker->dateTime(),
             //'NgayNhanHang' => $this->faker->dateTime(),
             'TongSoLuong' => $this->faker->randomNumber(),
             'TongTien' => $this->faker->randomFloat(2,0,100000000),
             'isGroup' => $this->faker->boolean(),
-            'idTrangThai' => TrangThaiDonHang::factory(),
-            'idNhanVien' => NguoiDung::factory(),
-            'idKhachHang' => NguoiDung::factory()
+            'idTrangThai' => $TrangThaiDonHang->id,
+            'idNhanVien' => $NguoiDung->id,
+            'idKhachHang' => $KhachHang->id
         ];
     }
 }

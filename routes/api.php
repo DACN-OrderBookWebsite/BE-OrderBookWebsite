@@ -16,7 +16,7 @@ use App\Http\Controllers\SachController;
 use App\Http\Controllers\TacGiaController;
 use App\Http\Controllers\TheLoaiController;
 use App\Http\Controllers\ImageUploadController;
-use App\Models\TrangThaiDonHang;
+use App\Http\Controllers\TrangThaiDonHangController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -71,7 +71,7 @@ Route::get('Sach/{id}/edit', [SachController::class, 'edit']);
 
 Route::apiResource('Sach', SachController::class);
 
-Route::apiResource('TrangThaiDonHang', TrangThaiDonHang::class);
+Route::apiResource('TrangThaiDonHang', TrangThaiDonHangController::class);
 
 Route::apiResource('NhaCungCap', NhaCungCapController::class);
 
@@ -114,3 +114,5 @@ Route::get('NguoiDung/{idNhom}/getDataIsNotAddByGroup', [NguoiDungController::cl
 Route::get('NhomNguoiDung/{idNhom}/getDataByidNhom', [NhomNguoiDungController::class, 'getDataByidNhom']);
 
 Route::get('PhanQuyen/{idNguoiDung}/{idQuyen}/checkQuyen', [PhanQuyenController::class, 'checkQuyen']);
+
+Route::get('PhieuNhap/{idTrangThai}/getDataByidTrangThai', [PhieuNhapController::class, 'getDataByidTrangThai']);

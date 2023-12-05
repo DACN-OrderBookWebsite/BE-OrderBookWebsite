@@ -17,6 +17,7 @@ class ChiTietPhieuNhap extends Model
     protected $fillable = [
         'id',
         'idSanPham',
+        'idPhieuNhap',
         'SoLuong',
         'DonGiaNhap'
     ];

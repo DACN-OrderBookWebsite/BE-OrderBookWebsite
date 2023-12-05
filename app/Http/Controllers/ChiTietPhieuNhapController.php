@@ -36,6 +36,7 @@ class ChiTietPhieuNhapController extends Controller
             // 'id' => 'required',
             'SoLuong' => 'required',
             'DonGiaNhap' => 'required',
+            'idPhieuNhap' => 'required|exists:tbl_PhieuNhap,id',
             'idSanPham' => 'required|exists:tbl_Sach,id',
         ]);
 
@@ -70,6 +71,7 @@ class ChiTietPhieuNhapController extends Controller
             // 'id' => 'required',
             'SoLuong' => 'required',
             'DonGiaNhap' => 'required',
+            'idPhieuNhap' => 'required|exists:tbl_PhieuNhap,id',
             'idSanPham' => 'required|exists:tbl_Sach,id',
         ]);
         $data = ChiTietPhieuNhap::findOrFail($id);

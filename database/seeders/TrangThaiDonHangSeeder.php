@@ -13,6 +13,6 @@ class TrangThaiDonHangSeeder extends Seeder
      */
     public function run(): void
     {
-        TrangThaiDonHang::factory(10)->create();
+        TrangThaiDonHang::factory()->fixedData()->create();
     }
 }

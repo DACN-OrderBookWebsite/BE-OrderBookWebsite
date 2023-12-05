@@ -19,14 +19,17 @@ class PhieuNhapFactory extends Factory
      */
     public function definition(): array
     {
+        $TrangThaiDonHang = TrangThaiDonHang::inRandomOrder()->first();
+        $NguoiDung = NguoiDung::inRandomOrder()->first();
+        $NhaCungCap = NhaCungCap::inRandomOrder()->first();
         return [
             'NgayNhap' => $this->faker->dateTime(),
             'NgayNhanHang' => $this->faker->dateTime(),
             'TongSoLuong' => $this->faker->randomNumber(),
             'TongTien' => $this->faker->randomFloat(2,0,100000000),
-            'idTrangThai' => TrangThaiDonHang::factory(),
-            'idNhanVien' => NguoiDung::factory(),
-            'idNhaCungCap' => NhaCungCap::factory()
+            'idTrangThai' => $TrangThaiDonHang->id,
+            'idNhanVien' => $NguoiDung->id,
+            'idNhaCungCap' => $NhaCungCap->id
         ];
     }
 }
