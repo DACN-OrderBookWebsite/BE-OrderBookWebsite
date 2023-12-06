@@ -92,7 +92,7 @@ class HoaDonController extends Controller
             'idKhachHang'=>'required|exists:tbl_NguoiDung,id',
         ]);
         $data = HoaDon::findOrFail($id);
-        $data->update($request);
+        $data->update($request->all());
     }
 
     /**

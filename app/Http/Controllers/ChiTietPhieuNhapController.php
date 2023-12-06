@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChiTietPhieuNhap;
 use App\Models\Sach;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ChiTietPhieuNhapController extends Controller
 {
@@ -75,7 +76,7 @@ class ChiTietPhieuNhapController extends Controller
             'idSanPham' => 'required|exists:tbl_Sach,id',
         ]);
         $data = ChiTietPhieuNhap::findOrFail($id);
-        $data->update($request);
+        $data->update($request->all());
     }
 
     /**
@@ -85,5 +86,38 @@ class ChiTietPhieuNhapController extends Controller
     {
         $data = ChiTietPhieuNhap::findOrFail($id);
         $data->delete();
+    }
+
+    public function getDataByidPhieuNhapAndNameOfSanPham($idPhieuNhap)
+    {
+        return ChiTietPhieuNhap::where('idPhieuNhap', $idPhieuNhap)->select('tbl_ChiTietPhieuNhap.*', 'tbl_Sach.name as name')
+        ->join('tbl_Sach', 'tbl_ChiTietPhieuNhap.idSanPham', '=', 'tbl_Sach.id')
+        ->get();
+    }
+    public function getDataByCheckSanPhamIsInsertedToPhieuNhap($idPhieuNhap, $idSanPham)
+    {
+        return ChiTietPhieuNhap::where('idPhieuNhap', $idPhieuNhap)->where('idSanPham', $idSanPham)->get();
+    }
+    public function calculateTongTienOfPhieuNhap($idPhieuNhap)
+    {
+        $TongTien =  ChiTietPhieuNhap::where('idPhieuNhap', $idPhieuNhap)->sum(DB::raw('DonGiaNhap * SoLuong'));
+        return response()->json([
+            "TongTien" => $TongTien,
+        ]);
+    }
+    public function sumSoLuongOfPhieuNhap($idPhieuNhap)
+    {
+        $TongSoLuong =  ChiTietPhieuNhap::where('idPhieuNhap', $idPhieuNhap)->sum(DB::raw('SoLuong'));
+        return response()->json([
+            "TongSoLuong" => $TongSoLuong,
+        ]);
+    }
+    public function deleteByPhieuNhap($idPhieuNhap)
+    {
+        ChiTietPhieuNhap::where('idPhieuNhap', $idPhieuNhap)->delete();
+    }
+    public function getDataByPhieuNhap($idPhieuNhap)
+    {
+        return ChiTietPhieuNhap::where('idPhieuNhap', $idPhieuNhap)->get();
     }
 }

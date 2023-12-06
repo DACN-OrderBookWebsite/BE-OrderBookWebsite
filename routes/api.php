@@ -116,3 +116,15 @@ Route::get('NhomNguoiDung/{idNhom}/getDataByidNhom', [NhomNguoiDungController::c
 Route::get('PhanQuyen/{idNguoiDung}/{idQuyen}/checkQuyen', [PhanQuyenController::class, 'checkQuyen']);
 
 Route::get('PhieuNhap/{idTrangThai}/getDataByidTrangThai', [PhieuNhapController::class, 'getDataByidTrangThai']);
+
+Route::get('ChiTietPhieuNhap/{idPhieuNhap}/getDataByidPhieuNhapAndNameOfSanPham', [ChiTietPhieuNhapController::class, 'getDataByidPhieuNhapAndNameOfSanPham']);
+
+Route::get('ChiTietPhieuNhap/{idPhieuNhap}/{idSanPham}/getDataByCheckSanPhamIsInsertedToPhieuNhap', [ChiTietPhieuNhapController::class, 'getDataByCheckSanPhamIsInsertedToPhieuNhap']);
+
+Route::get('ChiTietPhieuNhap/{idPhieuNhap}/calculateTongTienOfPhieuNhap', [ChiTietPhieuNhapController::class, 'calculateTongTienOfPhieuNhap']);
+
+Route::get('ChiTietPhieuNhap/{idPhieuNhap}/sumSoLuongOfPhieuNhap', [ChiTietPhieuNhapController::class, 'sumSoLuongOfPhieuNhap']);
+
+Route::delete('ChiTietPhieuNhap/{idPhieuNhap}/deleteByPhieuNhap', [ChiTietPhieuNhapController::class, 'deleteByPhieuNhap']);
+
+Route::get('ChiTietPhieuNhap/{idPhieuNhap}/getDataByPhieuNhap', [ChiTietPhieuNhapController::class, 'getDataByPhieuNhap']);

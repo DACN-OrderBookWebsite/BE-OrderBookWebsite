@@ -93,7 +93,7 @@ class PhieuNhapController extends Controller
             'idNhaCungCap'=>'required|exists:tbl_NhaCungCap,id',
         ]);
         $data = PhieuNhap::findOrFail($id);
-        $data->update($request);
+        $data->update($request->all());
     }
 
     /**
