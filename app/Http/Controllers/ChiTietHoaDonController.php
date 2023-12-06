@@ -75,7 +75,7 @@ class ChiTietHoaDonController extends Controller
             'idSanPham' => 'required|exists:tbl_Sach,id',
         ]);
         $data = ChiTietHoaDon::findOrFail($id);
-        $data->update($request);
+        $data->update($request->all());
     }
 
     /**

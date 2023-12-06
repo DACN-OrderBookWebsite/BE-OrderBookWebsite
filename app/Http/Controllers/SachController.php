@@ -109,4 +109,8 @@ class SachController extends Controller
         $data = Sach::findOrFail($id);
         $data->delete();
     }
+    public function updateSoLuongSanPhamByPhieuNhap()
+    {
+
+    }
 }
