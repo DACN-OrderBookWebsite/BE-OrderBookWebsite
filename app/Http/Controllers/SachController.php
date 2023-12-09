@@ -109,8 +109,12 @@ class SachController extends Controller
         $data = Sach::findOrFail($id);
         $data->delete();
     }
-    public function updateSoLuongSanPhamByPhieuNhap()
+    public function updateSoLuongSanPhamByPhieuNhap(Request $request, $id)
     {
-
+        $request->validate([
+            'SoLuongTon' => 'required',
+        ]);
+        $data = Sach::findOrFail($id);
+        $data->update($request->all());
     }
 }

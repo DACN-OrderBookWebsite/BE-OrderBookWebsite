@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\ChucVu;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\NguoiDung>
@@ -31,6 +32,7 @@ class NguoiDungFactory extends Factory
             'GioiTinh' => $this->faker->boolean,
             'Anh' => $this->faker->imageUrl(),
             'Disabled' => $this->faker->boolean,
+            'remember_token' => Str::random(60),
         ];
     }
 }
