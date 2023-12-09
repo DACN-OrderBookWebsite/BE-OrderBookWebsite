@@ -35,6 +35,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('TheLoai/getFiveTheLoai', [TheLoaiController::class, 'getFiveTheLoai']);
+
 Route::apiResource('ChucVu', ChucVuController::class);
 
 Route::get('NguoiDung/create', [NguoiDungController::class, 'create']);
@@ -128,3 +130,5 @@ Route::get('ChiTietPhieuNhap/{idPhieuNhap}/sumSoLuongOfPhieuNhap', [ChiTietPhieu
 Route::delete('ChiTietPhieuNhap/{idPhieuNhap}/deleteByPhieuNhap', [ChiTietPhieuNhapController::class, 'deleteByPhieuNhap']);
 
 Route::get('ChiTietPhieuNhap/{idPhieuNhap}/getDataByPhieuNhap', [ChiTietPhieuNhapController::class, 'getDataByPhieuNhap']);
+
+Route::put('Sach/{id}/updateSoLuongSanPhamByPhieuNhap', [SachController::class, 'updateSoLuongSanPhamByPhieuNhap']);
