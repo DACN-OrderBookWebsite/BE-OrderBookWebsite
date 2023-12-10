@@ -76,4 +76,9 @@ class TheLoaiController extends Controller
         $TheLoai = TheLoai::findOrFail($id);
         $TheLoai->delete();
     }
+
+    public function getFiveTheLoai()
+    {
+        return TheLoai::take(5)->get();
+    }
 }

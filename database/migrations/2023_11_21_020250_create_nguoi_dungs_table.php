@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('GioiTinh')->nullable();
             $table->string('Anh')->nullable();
             $table->boolean('Disabled')->nullable();
+            $table->string('remember_token')->nullable();
             //$table->timestamps();
         });
     }
