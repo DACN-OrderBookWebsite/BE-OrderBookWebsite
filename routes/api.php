@@ -19,7 +19,7 @@ use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\TrangThaiDonHangController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,11 +39,7 @@ Route::get('TheLoai/getFiveTheLoai', [TheLoaiController::class, 'getFiveTheLoai'
 
 Route::apiResource('ChucVu', ChucVuController::class);
 
-Route::get('NguoiDung/create', [NguoiDungController::class, 'create']);
 
-Route::get('NguoiDung/{id}/edit', [NguoiDungController::class, 'edit']);
-
-Route::apiResource('NguoiDung', NguoiDungController::class);
 
 Route::apiResource('Nhom', NhomController::class);
 
@@ -131,4 +127,11 @@ Route::delete('ChiTietPhieuNhap/{idPhieuNhap}/deleteByPhieuNhap', [ChiTietPhieuN
 
 Route::get('ChiTietPhieuNhap/{idPhieuNhap}/getDataByPhieuNhap', [ChiTietPhieuNhapController::class, 'getDataByPhieuNhap']);
 
+  Route::post('login', [AuthController::class, 'login']);
+
+Route::middleware('checktoken')->group(function () {
+    Route::apiResource('NguoiDung', NguoiDungController::class);
+    Route::get('NguoiDung/create', [NguoiDungController::class, 'create']);
+    Route::get('NguoiDung/{id}/edit', [NguoiDungController::class, 'edit']);
+});
 Route::put('Sach/{id}/updateSoLuongSanPhamByPhieuNhap', [SachController::class, 'updateSoLuongSanPhamByPhieuNhap']);
