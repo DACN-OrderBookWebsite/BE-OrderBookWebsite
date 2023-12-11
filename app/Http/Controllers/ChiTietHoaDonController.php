@@ -35,7 +35,7 @@ class ChiTietHoaDonController extends Controller
         $request->validate([
             // 'id' => 'required',
             'SoLuong' => 'required',
-            'DonGiaNhap' => 'required',
+            'DonGia' => 'required',
             'idHoaDon' => 'required|exists:tbl_HoaDon,id',
             'idSanPham' => 'required|exists:tbl_Sach,id',
         ]);
@@ -70,7 +70,7 @@ class ChiTietHoaDonController extends Controller
         $request->validate([
             // 'id' => 'required',
             'SoLuong' => 'required',
-            'DonGiaNhap' => 'required',
+            'DonGia' => 'required',
             'idHoaDon' => 'required|exists:tbl_HoaDon,id',
             'idSanPham' => 'required|exists:tbl_Sach,id',
         ]);

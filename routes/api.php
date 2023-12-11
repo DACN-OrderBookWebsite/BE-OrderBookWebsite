@@ -35,11 +35,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('Sach/{id}/showDataWithoutID', [SachController::class, 'showDataWithoutID']);
+
+Route::get('HoaDon/{MaSV}/showDataByMaSV', [HoaDonController::class, 'showDataByMaSV']);
+
+Route::get('Sach/getDataSortByTheLoai', [SachController::class, 'getDataSortByTheLoai']);
+
 Route::get('TheLoai/getFiveTheLoai', [TheLoaiController::class, 'getFiveTheLoai']);
 
 Route::apiResource('ChucVu', ChucVuController::class);
 
+Route::get('NguoiDung/create', [NguoiDungController::class, 'create']);
 
+Route::get('NguoiDung/{id}/edit', [NguoiDungController::class, 'edit']);
+
+Route::apiResource('NguoiDung', NguoiDungController::class);
 
 Route::apiResource('Nhom', NhomController::class);
 
@@ -130,8 +140,6 @@ Route::get('ChiTietPhieuNhap/{idPhieuNhap}/getDataByPhieuNhap', [ChiTietPhieuNha
   Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('checktoken')->group(function () {
-    Route::apiResource('NguoiDung', NguoiDungController::class);
-    Route::get('NguoiDung/create', [NguoiDungController::class, 'create']);
-    Route::get('NguoiDung/{id}/edit', [NguoiDungController::class, 'edit']);
+
 });
 Route::put('Sach/{id}/updateSoLuongSanPhamByPhieuNhap', [SachController::class, 'updateSoLuongSanPhamByPhieuNhap']);

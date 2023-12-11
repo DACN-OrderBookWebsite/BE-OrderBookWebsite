@@ -48,7 +48,8 @@ class SachController extends Controller
             'DonGia' => 'required',
             'SoLuongTon' => 'required',
             'Anh' => 'required',
-            'Disabled' => 'required'
+            'Disabled' => 'required',
+            'NamXuatBan' => 'required'
         ]);
         $Sach = $request->except(["Disabled"]);
         $Sach["Disabled"] = $request["Disabled"] ? 1 : 0;
@@ -93,7 +94,8 @@ class SachController extends Controller
             'DonGia' => 'required',
             'SoLuongTon' => 'required',
             'Anh' => 'required',
-            'Disabled' => 'required'
+            'Disabled' => 'required',
+            'NamXuatBan' => 'required'
         ]);
         $data = Sach::findOrFail($id);
         $Sach = $request->except(["Disabled"]);
@@ -116,5 +118,30 @@ class SachController extends Controller
         ]);
         $data = Sach::findOrFail($id);
         $data->update($request->all());
+    }
+    public function getDataSortByTheLoai()
+    {
+        $sachData = Sach::all()->sortBy('idTheLoai');
+
+        $formattedData = $sachData->map(function ($sach) {
+            return [
+                'id' => $sach->id,
+                'name' => $sach->name,
+                'price' => $sach->DonGia,
+                'stock' => $sach->SoLuongTon,
+                'image' => $sach->Anh,
+            ];
+        });
+
+        return $formattedData->values()->all();
+    }
+    public function showDataWithoutID($id)
+    {
+        return Sach::join('tbl_TheLoai', 'tbl_Sach.idTheLoai', '=', 'tbl_TheLoai.id')
+        ->join('tbl_TacGia','tbl_Sach.idTacGia', '=', 'tbl_TacGia.id')
+        ->join('tbl_NhaXuatBan','tbl_Sach.idNhaXuatBan', '=', 'tbl_NhaXuatBan.id')
+        ->where('tbl_Sach.id', '=', $id)
+        ->select('tbl_Sach.*', 'tbl_TheLoai.name as nameOfTheLoai', 'tbl_TacGia.name as nameOfTacGia', 'tbl_NhaXuatBan.name as nameOfNhaXuatBan')
+        ->first();
     }
 }

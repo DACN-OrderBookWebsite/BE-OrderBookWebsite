@@ -16,13 +16,18 @@ class HoaDon extends Model
 
     protected $fillable = [
         'id',
-        'NgayNhap',
-        //'NgayNhanHang',
+        'NgayXuat',
+        'NgayNhanHang',
         'TongSoLuong',
         'TongTien',
         'isGroup',
         'idTrangThai',
         'idNhanVien',
-        'idKhachHang'
+        'idKhachHang',
+        'MaSV',
+        'TenSV',
+        'SDT',
+        'DiaChiNhanHang',
+        'GhiChu'
     ];
 }

@@ -40,13 +40,17 @@ class HoaDonController extends Controller
         $request->validate([
             // 'id' => 'required',
             'NgayXuat' => 'required',
-            //'NgayNhanHang' => 'required',
+            'NgayNhanHang' => 'required',
             'TongSoLuong' => 'required',
             'TongTien' => 'required',
             'isGroup' => 'required',
             'idTrangThai' => 'required|exists:tbl_TrangThaiDonHang,id',
-            'idNhanVien'=>'required|exists:tbl_NguoiDung,id',
-            'idKhachHang'=>'required|exists:tbl_NguoiDung,id',
+            // 'idNhanVien'=>'required|exists:tbl_NguoiDung,id',
+            // 'idKhachHang'=>'required|exists:tbl_NguoiDung,id',
+            'MaSV' => 'required',
+            'TenSV' => 'required',
+            'SDT' => 'required',
+            'DiaChiNhanHang' => 'required',
         ]);
 
         HoaDon::create($request->all());
@@ -83,13 +87,17 @@ class HoaDonController extends Controller
         $request->validate([
             // 'id' => 'required',
             'NgayXuat' => 'required',
-            //'NgayNhanHang' => 'required',
+            'NgayNhanHang' => 'required',
             'TongSoLuong' => 'required',
             'TongTien' => 'required',
             'isGroup' => 'required',
             'idTrangThai' => 'required|exists:tbl_TrangThaiDonHang,id',
-            'idNhanVien'=>'required|exists:tbl_NguoiDung,id',
-            'idKhachHang'=>'required|exists:tbl_NguoiDung,id',
+            // 'idNhanVien'=>'required|exists:tbl_NguoiDung,id',
+            // 'idKhachHang'=>'required|exists:tbl_NguoiDung,id',
+            'MaSV' => 'required',
+            'TenSV' => 'required',
+            'SDT' => 'required',
+            'DiaChiNhanHang' => 'required',
         ]);
         $data = HoaDon::findOrFail($id);
         $data->update($request->all());
@@ -102,5 +110,9 @@ class HoaDonController extends Controller
     {
         $data = HoaDon::findOrFail($id);
         $data->delete();
+    }
+    public function showDataByMaSV($MaSV)
+    {
+        return HoaDon::where('MaSV', $MaSV)->orderByDesc('NgayXuat')->take(1)->get();
     }
 }
