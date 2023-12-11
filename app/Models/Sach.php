@@ -23,6 +23,7 @@ class Sach extends Model
         'DonGia',
         'SoLuongTon',
         'Anh',
-        'Disabled'
+        'Disabled',
+        'NamXuatBan'
     ];
 }

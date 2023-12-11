@@ -14,9 +14,15 @@ return new class extends Migration
         Schema::create('tbl_HoaDon', function (Blueprint $table) {
             $table->id();
             $table->dateTime('NgayXuat')->nullable();
+            $table->dateTime('NgayNhanHang')->nullable();
             $table->integer('TongSoLuong')->nullable();
             $table->double('TongTien')->nullable();
             $table->boolean('isGroup')->nullable();
+            $table->string('MaSV')->nullable();
+            $table->string('TenSV')->nullable();
+            $table->string('SDT')->nullable();
+            $table->string('DiaChiNhanHang')->nullable();
+            $table->string('GhiChu')->nullable();
         });
     }
 

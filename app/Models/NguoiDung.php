@@ -33,7 +33,7 @@ class NguoiDung extends Authenticatable implements JWTSubject
         'idChucVu',
         'GioiTinh',
         'Anh',
-        'Disabled'
+        'Disabled',
     ];
     protected $hidden = [
         'remember_token',

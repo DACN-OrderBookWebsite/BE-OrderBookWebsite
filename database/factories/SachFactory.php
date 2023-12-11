@@ -30,7 +30,8 @@ class SachFactory extends Factory
             'DonGia' => $this->faker->randomFloat(2, 0, 10000000),
             'SoLuongTon' => $this->faker->randomNumber(),
             'Anh' => $this->faker->imageUrl(),
-            'Disabled' => $this->faker->boolean(90)
+            'Disabled' => $this->faker->boolean(90),
+            'NamXuatBan' => $this->faker->randomNumber(4),
         ];
     }
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('SoLuongTon')->nullable();
             $table->string('Anh')->nullable();
             $table->boolean('Disabled')->nullable();
+            $table->integer('NamXuatBan')->nullable();
         });
     }
 
