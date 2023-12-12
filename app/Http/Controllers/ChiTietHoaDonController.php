@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChiTietHoaDon;
 use App\Models\Sach;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ChiTietHoaDonController extends Controller
 {
@@ -85,5 +86,37 @@ class ChiTietHoaDonController extends Controller
     {
         $data = ChiTietHoaDon::findOrFail($id);
         $data->delete();
+    }
+    public function getDataByidHoaDonAndNameOfSanPham($idHoaDon)
+    {
+        return ChiTietHoaDon::where('idHoaDon', $idHoaDon)->select('tbl_ChiTietHoaDon.*', 'tbl_Sach.name as name')
+        ->join('tbl_Sach', 'tbl_ChiTietHoaDon.idSanPham', '=', 'tbl_Sach.id')
+        ->get();
+    }
+    public function getDataByCheckSanPhamIsInsertedToHoaDon($idHoaDon, $idSanPham)
+    {
+        return ChiTietHoaDon::where('idHoaDon', $idHoaDon)->where('idSanPham', $idSanPham)->get();
+    }
+    public function calculateTongTienOfHoaDon($idHoaDon)
+    {
+        $TongTien =  ChiTietHoaDon::where('idHoaDon', $idHoaDon)->sum(DB::raw('DonGia * SoLuong'));
+        return response()->json([
+            "TongTien" => $TongTien,
+        ]);
+    }
+    public function sumSoLuongOfHoaDon($idHoaDon)
+    {
+        $TongSoLuong =  ChiTietHoaDon::where('idHoaDon', $idHoaDon)->sum(DB::raw('SoLuong'));
+        return response()->json([
+            "TongSoLuong" => $TongSoLuong,
+        ]);
+    }
+    public function deleteByHoaDon($idHoaDon)
+    {
+        ChiTietHoaDon::where('idHoaDon', $idHoaDon)->delete();
+    }
+    public function getDataByHoaDon($idHoaDon)
+    {
+        return ChiTietHoaDon::where('idHoaDon', $idHoaDon)->get();
     }
 }
