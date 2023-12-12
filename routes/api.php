@@ -35,6 +35,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('ChiTietHoaDon/{idHoaDon}/getDataByidHoaDonAndNameOfSanPham', [ChiTietHoaDonController::class, 'getDataByidHoaDonAndNameOfSanPham']);
+
+Route::get('ChiTietHoaDon/{idHoaDon}/{idSanPham}/getDataByCheckSanPhamIsInsertedToHoaDon', [ChiTietHoaDonController::class, 'getDataByCheckSanPhamIsInsertedToHoaDon']);
+
+Route::get('ChiTietHoaDon/{idHoaDon}/calculateTongTienOfHoaDon', [ChiTietHoaDonController::class, 'calculateTongTienOfHoaDon']);
+
+Route::get('ChiTietHoaDon/{idHoaDon}/sumSoLuongOfHoaDon', [ChiTietHoaDonController::class, 'sumSoLuongOfHoaDon']);
+
+Route::delete('ChiTietHoaDon/{idHoaDon}/deleteByHoaDon', [ChiTietHoaDonController::class, 'deleteByHoaDon']);
+
+Route::get('ChiTietHoaDon/{idHoaDon}/getDataByHoaDon', [ChiTietHoaDonController::class, 'getDataByHoaDon']);
+
+Route::get('HoaDon/{idTrangThai}/getDataByidTrangThai', [HoaDonController::class, 'getDataByidTrangThai']);
+
+Route::get('NguoiDung/{username}/getDataByTenDangNhap', [NguoiDungController::class, 'getDataByTenDangNhap']);
+
 Route::get('Sach/{id}/showDataWithoutID', [SachController::class, 'showDataWithoutID']);
 
 Route::get('HoaDon/{MaSV}/showDataByMaSV', [HoaDonController::class, 'showDataByMaSV']);

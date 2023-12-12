@@ -159,4 +159,8 @@ class NguoiDungController extends Controller
         // Trả về kết quả dưới dạng JSON
         return response()->json($missingPermissions);
     }
+    public function getDataByTenDangNhap($username)
+    {
+        return NguoiDung::where('TenDangNhap', $username)->first();
+    }
 }

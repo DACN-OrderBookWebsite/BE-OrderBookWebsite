@@ -115,4 +115,8 @@ class HoaDonController extends Controller
     {
         return HoaDon::where('MaSV', $MaSV)->orderByDesc('NgayXuat')->take(1)->get();
     }
+    public function getDataByidTrangThai($idTrangThai)
+    {
+        return HoaDon::where('idTrangThai', $idTrangThai)->orderByDesc('NgayXuat')->get();
+    }
 }
