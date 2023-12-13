@@ -35,6 +35,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('Sach/{data}/search', [SachController::class, 'search']);
+
+Route::get('Sach/{idTheLoai}/{sort}/getDataByTheLoaiSort', [SachController::class, 'getDataByTheLoaiSort']);
+
+Route::get('Sach/{idTheLoai}/getDataByTheLoai', [SachController::class, 'getDataByTheLoai']);
+
 Route::get('Sach/getDataSach_NhaXuatBan_TacGia_TheLoai', [SachController::class, 'getDataSach_NhaXuatBan_TacGia_TheLoai']);
 
 Route::get('PhanQuyen/getDataNhomAndQuyen', [PhanQuyenController::class, 'getDataNhomAndQuyen']);

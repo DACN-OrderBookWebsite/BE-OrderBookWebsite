@@ -43,8 +43,8 @@ class SachController extends Controller
             // 'id' => 'required',
             'name' => 'required',
             'idTheLoai' => 'required|exists:tbl_TheLoai,id',
-            'idNhaXuatBan'=>'required|exists:tbl_NhaXuatBan,id',
-            'idTacGia'=>'required|exists:tbl_TacGia,id',
+            'idNhaXuatBan' => 'required|exists:tbl_NhaXuatBan,id',
+            'idTacGia' => 'required|exists:tbl_TacGia,id',
             'DonGia' => 'required',
             'SoLuongTon' => 'required',
             'Anh' => 'required',
@@ -89,8 +89,8 @@ class SachController extends Controller
             // 'id' => 'required',
             'name' => 'required',
             'idTheLoai' => 'required|exists:tbl_TheLoai,id',
-            'idNhaXuatBan'=>'required|exists:tbl_NhaXuatBan,id',
-            'idTacGia'=>'required|exists:tbl_TacGia,id',
+            'idNhaXuatBan' => 'required|exists:tbl_NhaXuatBan,id',
+            'idTacGia' => 'required|exists:tbl_TacGia,id',
             'DonGia' => 'required',
             'SoLuongTon' => 'required',
             'Anh' => 'required',
@@ -138,19 +138,77 @@ class SachController extends Controller
     public function showDataWithoutID($id)
     {
         return Sach::join('tbl_TheLoai', 'tbl_Sach.idTheLoai', '=', 'tbl_TheLoai.id')
-        ->join('tbl_TacGia','tbl_Sach.idTacGia', '=', 'tbl_TacGia.id')
-        ->join('tbl_NhaXuatBan','tbl_Sach.idNhaXuatBan', '=', 'tbl_NhaXuatBan.id')
-        ->where('tbl_Sach.id', '=', $id)
-        ->select('tbl_Sach.*', 'tbl_TheLoai.name as nameOfTheLoai', 'tbl_TacGia.name as nameOfTacGia', 'tbl_NhaXuatBan.name as nameOfNhaXuatBan')
-        ->first();
+            ->join('tbl_TacGia', 'tbl_Sach.idTacGia', '=', 'tbl_TacGia.id')
+            ->join('tbl_NhaXuatBan', 'tbl_Sach.idNhaXuatBan', '=', 'tbl_NhaXuatBan.id')
+            ->where('tbl_Sach.id', '=', $id)
+            ->select('tbl_Sach.*', 'tbl_TheLoai.name as nameOfTheLoai', 'tbl_TacGia.name as nameOfTacGia', 'tbl_NhaXuatBan.name as nameOfNhaXuatBan')
+            ->first();
     }
     public function getDataSach_NhaXuatBan_TacGia_TheLoai()
     {
         return Sach::join('tbl_NhaXuatBan', 'tbl_NhaXuatBan.id', '=', 'tbl_Sach.idNhaXuatBan')
-                    ->join('tbl_TacGia', 'tbl_TacGia.id', '=', 'tbl_Sach.idTacGia')
-                    ->join('tbl_TheLoai', 'tbl_TheLoai.id', '=', 'tbl_Sach.idTheLoai')
-                    ->orderBy('tbl_Sach.name')
-                    ->select('tbl_Sach.*', 'tbl_TacGia.name as nameOfTacGia', 'tbl_NhaXuatBan.name as nameOfNhaXuatBan', 'tbl_TheLoai.name as nameOfTheLoai')
-                    ->get();
+            ->join('tbl_TacGia', 'tbl_TacGia.id', '=', 'tbl_Sach.idTacGia')
+            ->join('tbl_TheLoai', 'tbl_TheLoai.id', '=', 'tbl_Sach.idTheLoai')
+            ->orderBy('tbl_Sach.name')
+            ->select('tbl_Sach.*', 'tbl_TacGia.name as nameOfTacGia', 'tbl_NhaXuatBan.name as nameOfNhaXuatBan', 'tbl_TheLoai.name as nameOfTheLoai')
+            ->get();
+    }
+    public function getDataByTheLoai($idTheLoai)
+    {
+        $sachData = Sach::where('idTheLoai', '=', $idTheLoai)->get();
+
+        $formattedData = $sachData->map(function ($sach) {
+            return [
+                'id' => $sach->id,
+                'name' => $sach->name,
+                'price' => $sach->DonGia,
+                'stock' => $sach->SoLuongTon,
+                'image' => $sach->Anh,
+            ];
+        });
+
+        return $formattedData->values()->all();
+    }
+    public function getDataByTheLoaiSort($idTheLoai, $sort)
+    {
+        $sachData = Sach::where('idTheLoai', $idTheLoai);
+
+        if ($sort == 1) {
+            $sachData->orderBy('name');
+        } elseif ($sort == 2) {
+            $sachData->orderBy('DonGia');
+        } else {
+            $sachData->orderByDesc('DonGia');
+        }
+
+        $sachData = $sachData->get();
+
+        $formattedData = $sachData->map(function ($sach) {
+            return [
+                'id' => $sach->id,
+                'name' => $sach->name,
+                'price' => $sach->DonGia,
+                'stock' => $sach->SoLuongTon,
+                'image' => $sach->Anh,
+            ];
+        });
+
+        return $formattedData->values()->all();
+    }
+    public function search($data)
+    {
+        $sachData = Sach::where('name', 'like', '%'.$data.'%')->get();
+
+        $formattedData = $sachData->map(function ($sach) {
+            return [
+                'id' => $sach->id,
+                'name' => $sach->name,
+                'price' => $sach->DonGia,
+                'stock' => $sach->SoLuongTon,
+                'image' => $sach->Anh,
+            ];
+        });
+
+        return $formattedData->values()->all();
     }
 }
