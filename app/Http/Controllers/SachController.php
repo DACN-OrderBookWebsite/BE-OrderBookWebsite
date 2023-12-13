@@ -144,4 +144,13 @@ class SachController extends Controller
         ->select('tbl_Sach.*', 'tbl_TheLoai.name as nameOfTheLoai', 'tbl_TacGia.name as nameOfTacGia', 'tbl_NhaXuatBan.name as nameOfNhaXuatBan')
         ->first();
     }
+    public function getDataSach_NhaXuatBan_TacGia_TheLoai()
+    {
+        return Sach::join('tbl_NhaXuatBan', 'tbl_NhaXuatBan.id', '=', 'tbl_Sach.idNhaXuatBan')
+                    ->join('tbl_TacGia', 'tbl_TacGia.id', '=', 'tbl_Sach.idTacGia')
+                    ->join('tbl_TheLoai', 'tbl_TheLoai.id', '=', 'tbl_Sach.idTheLoai')
+                    ->orderBy('tbl_Sach.name')
+                    ->select('tbl_Sach.*', 'tbl_TacGia.name as nameOfTacGia', 'tbl_NhaXuatBan.name as nameOfNhaXuatBan', 'tbl_TheLoai.name as nameOfTheLoai')
+                    ->get();
+    }
 }

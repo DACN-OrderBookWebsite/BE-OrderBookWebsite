@@ -106,6 +106,12 @@ class PhieuNhapController extends Controller
     }
     public function getDataByidTrangThai($idTrangThai)
     {
-        return PhieuNhap::where('idTrangThai', $idTrangThai)->orderByDesc('NgayNhap')->get();
+        //return PhieuNhap::where('idTrangThai', $idTrangThai)->orderByDesc('NgayNhap')->get();
+        return PhieuNhap::join('tbl_NguoiDung', 'tbl_NguoiDung.id', '=', 'tbl_PhieuNhap.idNhanVien')
+                        ->join('tbl_NhaCungCap', 'tbl_NhaCungCap.id', '=', 'tbl_PhieuNhap.idNhaCungCap')
+                        ->where('idTrangThai', $idTrangThai)
+                        ->orderByDesc('NgayNhap')
+                        ->select('tbl_PhieuNhap.*', 'tbl_NguoiDung.name as nameOfNhanVien', 'tbl_NhaCungCap.name as nameOfNhaCungCap')
+                        ->get();
     }
 }
