@@ -137,13 +137,23 @@ class SachController extends Controller
     }
     public function showDataWithoutID($id)
     {
-        return Sach::join('tbl_TheLoai', 'tbl_Sach.idTheLoai', '=', 'tbl_TheLoai.id')
+        $sachData = Sach::join('tbl_TheLoai', 'tbl_Sach.idTheLoai', '=', 'tbl_TheLoai.id')
             ->join('tbl_TacGia', 'tbl_Sach.idTacGia', '=', 'tbl_TacGia.id')
             ->join('tbl_NhaXuatBan', 'tbl_Sach.idNhaXuatBan', '=', 'tbl_NhaXuatBan.id')
             ->where('tbl_Sach.id', '=', $id)
             ->select('tbl_Sach.*', 'tbl_TheLoai.name as nameOfTheLoai', 'tbl_TacGia.name as nameOfTacGia', 'tbl_NhaXuatBan.name as nameOfNhaXuatBan')
             ->first();
+
+        // Check if $sachData is not null before proceeding
+        if ($sachData) {
+            $formattedData = $sachData;
+            $formattedData['price'] = $formattedData['DonGia'];
+            $formattedData['stock'] = $formattedData['SoLuongTon'];
+            $formattedData['image'] = $formattedData['Anh'];
+        }
+        return $formattedData;
     }
+
     public function getDataSach_NhaXuatBan_TacGia_TheLoai()
     {
         return Sach::join('tbl_NhaXuatBan', 'tbl_NhaXuatBan.id', '=', 'tbl_Sach.idNhaXuatBan')
@@ -197,7 +207,7 @@ class SachController extends Controller
     }
     public function search($data)
     {
-        $sachData = Sach::where('name', 'like', '%'.$data.'%')->get();
+        $sachData = Sach::where('name', 'like', '%' . $data . '%')->get();
 
         $formattedData = $sachData->map(function ($sach) {
             return [
