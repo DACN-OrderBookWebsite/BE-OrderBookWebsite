@@ -100,4 +100,12 @@ class NhomNguoiDungController extends Controller
 
         return response()->json($nhomNguoiDung);
     }
+    public function getDataNhomAndNguoiDung()
+    {
+        return NhomNguoiDung::join('tbl_Nhom', 'tbl_Nhom.id', '=', 'tbl_NhomNguoiDung.idNhom')
+                            ->join('tbl_NguoiDung', 'tbl_NguoiDung.id', '=', 'tbl_NhomNguoiDung.idNguoiDung')
+                            ->orderBy('tbl_Nhom.name')
+                            ->select('tbl_NhomNguoiDung.*', 'tbl_Nhom.name as nameOfNhom', 'tbl_NguoiDung.name as nameOfNguoiDung')
+                            ->get();
+    }
 }

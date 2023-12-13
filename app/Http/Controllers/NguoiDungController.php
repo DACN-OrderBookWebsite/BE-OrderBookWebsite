@@ -163,4 +163,9 @@ class NguoiDungController extends Controller
     {
         return NguoiDung::where('TenDangNhap', $username)->first();
     }
+    public function getNguoiDungAndChucVu()
+    {
+        return NguoiDung::join('tbl_ChucVu', 'tbl_ChucVu.id', '=', 'tbl_NguoiDung.idChucVu')
+        ->select('tbl_NguoiDung.*', 'tbl_ChucVu.name as nameOfChucVu')->get();
+    }
 }

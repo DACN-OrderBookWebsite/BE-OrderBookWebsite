@@ -114,4 +114,12 @@ class PhanQuyenController extends Controller
         // Trả về kết quả true hoặc false
         return response()->json(['result' => $result]);
     }
+    public function getDataNhomAndQuyen()
+    {
+        return PhanQuyen::join('tbl_Nhom', 'tbl_Nhom.id', '=', 'tbl_PhanQuyen.idNhom')
+                            ->join('tbl_Quyen', 'tbl_Quyen.id', '=', 'tbl_PhanQuyen.idQuyen')
+                            ->orderBy('tbl_Nhom.name')
+                            ->select('tbl_PhanQuyen.*', 'tbl_Nhom.name as nameOfNhom', 'tbl_Quyen.name as nameOfQuyen')
+                            ->get();
+    }
 }
