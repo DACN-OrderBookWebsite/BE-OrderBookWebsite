@@ -13,6 +13,6 @@ class NguoiDungSeeder extends Seeder
      */
     public function run(): void
     {
-        NguoiDung::factory(10)->create();
+        NguoiDung::factory()->fixedData()->create();
     }
 }

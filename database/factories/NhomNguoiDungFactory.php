@@ -25,4 +25,13 @@ class NhomNguoiDungFactory extends Factory
             'idNhom' => $Nhom->id
         ];
     }
+    public function fixedData(): NhomNguoiDungFactory
+    {
+        $NguoiDung = NguoiDung::inRandomOrder()->first();
+        $Nhom = Nhom::inRandomOrder()->first();
+        return $this->state([
+            'idNguoiDung' => $NguoiDung->id,
+            'idNhom' => $Nhom->id
+        ]);
+    }
 }

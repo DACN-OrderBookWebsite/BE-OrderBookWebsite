@@ -20,4 +20,10 @@ class NhomFactory extends Factory
             'name' => $this->faker->name()
         ];
     }
+    public function fixedData(): NhomFactory
+    {
+        return $this->state([
+            'name' => 'admin',
+        ]);
+    }
 }

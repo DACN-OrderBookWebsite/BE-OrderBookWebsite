@@ -35,4 +35,22 @@ class NguoiDungFactory extends Factory
             'remember_token' => Str::random(60),
         ];
     }
+    public function fixedData(): NguoiDungFactory{
+        $ChucVu = ChucVu::inRandomOrder()->first();
+        return $this->state([
+            'name' => 'admin',
+            'TenDangNhap' => 'administrator',
+            'MatKhau' => bcrypt('123'),
+            'SDT' => '0123456789',
+            'DiaChi' => '140 Lê Trọng Tấn',
+            'Email' => 'administrator@gmail.com',
+            'NgayTao' => now(),
+            'NgayThayDoi' => now(),
+            'idChucVu' => $ChucVu->id,
+            'GioiTinh' => $this->faker->boolean,
+            'Anh' => $this->faker->imageUrl(),
+            'Disabled' => false,
+            'remember_token' => Str::random(60),
+        ]);
+    }
 }

@@ -30,7 +30,8 @@ class QuyenController extends Controller
     {
         $request->validate([
             // 'id' => 'required',
-            'name' => 'required'
+            'name' => 'required',
+            'direction' => 'required'
         ]);
 
         Quyen::create($request->all());
@@ -59,7 +60,8 @@ class QuyenController extends Controller
     {
         $request->validate([
             // 'id' => 'required',
-            'name' => 'required'
+            'name' => 'required',
+            'direction' => 'required'
         ]);
     
         $Quyen = Quyen::findOrFail($id);
