@@ -13,6 +13,6 @@ class NhomSeeder extends Seeder
      */
     public function run(): void
     {
-        Nhom::factory(10)->create();
+        Nhom::factory()->fixedData()->create();
     }
 }

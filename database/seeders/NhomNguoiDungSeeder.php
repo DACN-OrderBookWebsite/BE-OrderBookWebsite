@@ -13,6 +13,6 @@ class NhomNguoiDungSeeder extends Seeder
      */
     public function run(): void
     {
-        NhomNguoiDung::factory(10)->create();
+        NhomNguoiDung::factory()->fixedData()->create();
     }
 }

@@ -13,6 +13,6 @@ class PhanQuyenSeeder extends Seeder
      */
     public function run(): void
     {
-        PhanQuyen::factory(10)->create();
+        PhanQuyen::factory()->fixedData()->create();
     }
 }
