@@ -13,6 +13,6 @@ class ChucVuSeeder extends Seeder
      */
     public function run(): void
     {
-        ChucVu::factory()->count(10)->create();
+        ChucVu::factory()->fixedData()->create();
     }
 }

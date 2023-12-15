@@ -27,11 +27,11 @@ class NhomNguoiDungFactory extends Factory
     }
     public function fixedData(): NhomNguoiDungFactory
     {
-        $NguoiDung = NguoiDung::inRandomOrder()->first();
-        $Nhom = Nhom::inRandomOrder()->first();
+        // $NguoiDung = NguoiDung::inRandomOrder()->first();
+        // $Nhom = Nhom::inRandomOrder()->first();
         return $this->state([
-            'idNguoiDung' => $NguoiDung->id,
-            'idNhom' => $Nhom->id
+            'idNguoiDung' => 1,
+            'idNhom' => 1
         ]);
     }
 }

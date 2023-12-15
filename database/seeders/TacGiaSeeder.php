@@ -13,6 +13,6 @@ class TacGiaSeeder extends Seeder
      */
     public function run(): void
     {
-        TacGia::factory(10)->create();
+        TacGia::factory()->fixedData()->create();
     }
 }

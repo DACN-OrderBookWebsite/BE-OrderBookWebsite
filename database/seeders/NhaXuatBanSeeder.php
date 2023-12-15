@@ -13,6 +13,6 @@ class NhaXuatBanSeeder extends Seeder
      */
     public function run(): void
     {
-        NhaXuatBan::factory(10)->create();
+        NhaXuatBan::factory()->fixedData()->create();
     }
 }

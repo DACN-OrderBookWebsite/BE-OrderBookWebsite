@@ -36,7 +36,7 @@ class NguoiDungFactory extends Factory
         ];
     }
     public function fixedData(): NguoiDungFactory{
-        $ChucVu = ChucVu::inRandomOrder()->first();
+        //$ChucVu = ChucVu::inRandomOrder()->first();
         return $this->state([
             'name' => 'admin',
             'TenDangNhap' => 'administrator',
@@ -46,7 +46,7 @@ class NguoiDungFactory extends Factory
             'Email' => 'administrator@gmail.com',
             'NgayTao' => now(),
             'NgayThayDoi' => now(),
-            'idChucVu' => $ChucVu->id,
+            'idChucVu' => 1,
             'GioiTinh' => $this->faker->boolean,
             'Anh' => $this->faker->imageUrl(),
             'Disabled' => false,

@@ -13,6 +13,6 @@ class SachSeeder extends Seeder
      */
     public function run(): void
     {
-        Sach::factory(10)->create();
+        Sach::factory()->fixedData()->create();
     }
 }

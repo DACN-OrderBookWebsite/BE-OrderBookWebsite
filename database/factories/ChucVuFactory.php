@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\ChucVu;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,5 +20,13 @@ class ChucVuFactory extends Factory
         return [
             'name' => $this->faker->name,
         ];
+    }
+    public function fixedData(): ChucVuFactory
+    {
+        return $this->state([
+            'name' => 'admin',
+        ])->afterCreating(function (ChucVu $ChucVu) {
+            ChucVu::factory()->create(['name' => 'Khách hàng']);
+        });
     }
 }
