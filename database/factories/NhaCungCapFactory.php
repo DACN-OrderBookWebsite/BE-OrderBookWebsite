@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\NhaCungCap;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,5 +23,14 @@ class NhaCungCapFactory extends Factory
             'DiaChi' => $this->faker->address,
             'Email' => $this->faker->unique()->safeEmail,
         ];
+    }
+    public function fixedData(): NhaCungCapFactory
+    {
+        return $this->state([
+            'name' =>'Trường đại học công thương ',
+            'SDT' => '02838163318',
+            'DiaChi' => '140 Lê Trọng Tấn, Phường Tây Thạnh, Quận Tân Phú, TP.HCM',
+            'Email' => 'infor@hufi.edu.vn',
+        ]);
     }
 }

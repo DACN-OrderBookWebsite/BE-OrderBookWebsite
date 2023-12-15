@@ -13,6 +13,6 @@ class TheLoaiSeeder extends Seeder
      */
     public function run(): void
     {
-        TheLoai::factory(10)->create();
+        TheLoai::factory()->fixedData()->create();
     }
 }

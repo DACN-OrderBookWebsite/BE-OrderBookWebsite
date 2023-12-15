@@ -13,6 +13,6 @@ class NhaCungCapSeeder extends Seeder
      */
     public function run(): void
     {
-        NhaCungCap::factory(10)->create();
+        NhaCungCap::factory()->fixedData()->create();
     }
 }

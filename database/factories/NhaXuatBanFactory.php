@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\NhaXuatBan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,5 +20,15 @@ class NhaXuatBanFactory extends Factory
         return [
             'name' => $this->faker->name()
         ];
+    }
+    public function fixedData(): NhaXuatBanFactory
+    {
+        return $this->state([
+            'name' =>'Trường đại học Công Thương'
+        ])->afterCreating(function (NhaXuatBan $NhaXuatBan) {
+            NhaXuatBan::factory()->create(['name' => 'Trường đại học Khoa học tự nhiên']);
+        })->afterCreating(function (NhaXuatBan $NhaXuatBan) {
+            NhaXuatBan::factory()->create(['name' => 'Trường đại học Bách Khoa']);
+        });
     }
 }
