@@ -121,7 +121,8 @@ class SachController extends Controller
     }
     public function getDataSortByTheLoai()
     {
-        $sachData = Sach::all()->sortBy('idTheLoai');
+        //$sachData = Sach::all()->sortBy('idTheLoai');
+        $sachData = Sach::where('Disabled', 0)->orderBy('idTheLoai')->get();
 
         $formattedData = $sachData->map(function ($sach) {
             return [
@@ -165,7 +166,7 @@ class SachController extends Controller
     }
     public function getDataByTheLoai($idTheLoai)
     {
-        $sachData = Sach::where('idTheLoai', '=', $idTheLoai)->get();
+        $sachData = Sach::where('idTheLoai', '=', $idTheLoai)->where('Disabled', 0)->get();
 
         $formattedData = $sachData->map(function ($sach) {
             return [
@@ -181,7 +182,7 @@ class SachController extends Controller
     }
     public function getDataByTheLoaiSort($idTheLoai, $sort)
     {
-        $sachData = Sach::where('idTheLoai', $idTheLoai);
+        $sachData = Sach::where('idTheLoai', $idTheLoai)->where('Disabled', 0);
 
         if ($sort == 1) {
             $sachData->orderBy('name');
@@ -207,7 +208,7 @@ class SachController extends Controller
     }
     public function search($data)
     {
-        $sachData = Sach::where('name', 'like', '%' . $data . '%')->get();
+        $sachData = Sach::where('name', 'like', '%' . $data . '%')->where('Disabled', 0)->get();
 
         $formattedData = $sachData->map(function ($sach) {
             return [
