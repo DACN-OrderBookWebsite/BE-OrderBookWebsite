@@ -117,6 +117,11 @@ class HoaDonController extends Controller
     }
     public function getDataByidTrangThai($idTrangThai)
     {
-        return HoaDon::where('idTrangThai', $idTrangThai)->orderByDesc('NgayXuat')->get();
+        // return HoaDon::where('idTrangThai', $idTrangThai)->orderByDesc('NgayXuat')->get();
+        return HoaDon::join('tbl_NguoiDung', 'tbl_NguoiDung.id', '=', 'tbl_HoaDon.idNhanVien')
+                        ->where('idTrangThai', $idTrangThai)
+                        ->orderByDesc('NgayXuat')
+                        ->select('tbl_HoaDon.*', 'tbl_NguoiDung.name as nameOfNhanVien')
+                        ->get();
     }
 }

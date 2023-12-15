@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\ChucVu;
+use App\Models\NguoiDung;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -48,9 +49,25 @@ class NguoiDungFactory extends Factory
             'NgayThayDoi' => now(),
             'idChucVu' => 1,
             'GioiTinh' => $this->faker->boolean,
-            'Anh' => $this->faker->imageUrl(),
+            'Anh' => 'http://localhost:8000/images/NguoiDung/User.png',
             'Disabled' => false,
             'remember_token' => Str::random(60),
-        ]);
+        ])->afterCreating(function (NguoiDung $Sach) {
+            NguoiDung::factory()->create([
+                'name' => 'Khách vãng lai',
+                'TenDangNhap' => 'khachvanglai',
+                'MatKhau' => bcrypt('123'),
+                'SDT' => '0111111111',
+                'DiaChi' => '140 Lê Trọng Tấn',
+                'Email' => 'khachvanglai@gmail.com',
+                'NgayTao' => now(),
+                'NgayThayDoi' => now(),
+                'idChucVu' => 2,
+                'GioiTinh' => $this->faker->boolean,
+                'Anh' => 'http://localhost:8000/images/NguoiDung/User.png',
+                'Disabled' => false,
+                'remember_token' => Str::random(60),
+            ]);
+        });
     }
 }
