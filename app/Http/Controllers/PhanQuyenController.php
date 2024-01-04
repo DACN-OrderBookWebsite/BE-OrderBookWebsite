@@ -103,13 +103,22 @@ class PhanQuyenController extends Controller
     public function checkQuyen($idNguoiDung, $idQuyen)
     {
         // Kiểm tra xem người dùng có idQuyen tương ứng trong bảng PhanQuyen hay không
-        $result = PhanQuyen::where('idNhom', function ($query) use ($idNguoiDung) {
-                $query->select('idNhom')
-                    ->from('tbl_NhomNguoiDung')
-                    ->where('idNguoiDung', $idNguoiDung);
-            })
-            ->where('idQuyen', $idQuyen)
-            ->exists();
+        // $result = PhanQuyen::where('idNhom', function ($query) use ($idNguoiDung) {
+        //         $query->select('idNhom')
+        //             ->from('tbl_NhomNguoiDung')
+        //             ->where('idNguoiDung', $idNguoiDung);
+        //     })
+        //     ->where('idQuyen', $idQuyen)
+        //     ->exists();
+
+        $result = PhanQuyen::whereIn('idNhom', function ($query) use ($idNguoiDung) {
+            $query->select('idNhom')
+                ->from('tbl_NhomNguoiDung')
+                ->where('idNguoiDung', $idNguoiDung);
+        })
+        ->where('idQuyen', $idQuyen)
+        ->exists();
+
 
         // Trả về kết quả true hoặc false
         return response()->json(['result' => $result]);
