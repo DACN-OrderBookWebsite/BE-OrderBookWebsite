@@ -14,7 +14,7 @@ Hoàng Minh Long: Thực hiện thiết kế database, Cài đặt UX các chứ
 
 ## Hướng dẫn cài đặt
 
-Bước 1: Clone repository về máy của bạn: `git clone https://github.com/DACN-OrderBookWebsite/FE-OrderBookWebsite.git`.
+Bước 1: Clone repository về máy của bạn: `git clone https://github.com/DACN-OrderBookWebsite/BE-OrderBookWebsite.git`.
 
 Bước 2: Chạy lệnh "composer install".
 
